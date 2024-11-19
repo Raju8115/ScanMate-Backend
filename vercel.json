@@ -1,0 +1,27 @@
+{
+    "builds": [
+      {
+        "src": "UserAPI/wsgi.py",
+        "use": "@vercel/python",
+        "config": {
+          "maxLambdaSize": "15mb",
+          "runtime": "python3.9"
+        }
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "UserAPI/wsgi.py"
+      }
+    ],
+    "build": {
+      "env": {
+        "DJANGO_SETTINGS_MODULE": "UserAPI.settings"
+      },
+      "commands": [
+        "python manage.py collectstatic --noinput"
+      ]
+    }
+  }
+  
